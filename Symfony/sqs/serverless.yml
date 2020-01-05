@@ -1,4 +1,4 @@
-service: bref-demo-sqs3
+service: bref-demo-sqs
 
 plugins:
     - ./vendor/bref/bref
