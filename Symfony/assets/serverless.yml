@@ -1,0 +1,35 @@
+service: bref-demo-assets
+
+provider:
+    name: aws
+    region: us-east-1
+    runtime: provided
+
+plugins:
+    - ./vendor/bref/bref
+
+Globals:
+    Function:
+        Environment:
+            Variables:
+                APP_ENV: prod
+                APP_SECRET: 7ca3adc3815e12d67b4637595b7f9dff
+
+package:
+    exclude:
+        - 'assets/**'
+        - 'node_modules/**'
+        - 'tests/**'
+        - 'public/build/*.js'
+        - 'public/build/*.css'
+
+functions:
+    api:
+        handler: public/index.php
+        description: ''
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        layers:
+            - ${bref:layer.php-74-fpm}
+        events:
+            -   http: 'ANY /'
+            -   http: 'ANY /{proxy+}'

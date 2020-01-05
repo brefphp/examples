@@ -1,0 +1,15 @@
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    width: 20rem;
+    text-align: center;
+    margin: 30vh auto 0 auto;
+}
+
+p {
+    width: 40rem;
+    text-align: center;
+    margin: 2rem auto 0 auto;
+}
