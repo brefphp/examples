@@ -1,0 +1,20 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        transports:
+            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+
+        routing:
+            'App\Message\Ping': async
+
+services:
+
+    Bref\Messenger\Sqs\SqsConsumer:
+        autowire: true
+        autoconfigure: true
+        arguments:
+            # Inject the transport name used in config/packages/messenger.yaml
+            $transportName: 'async'
+        public: true

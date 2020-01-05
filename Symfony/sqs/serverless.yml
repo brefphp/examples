@@ -1,4 +1,4 @@
-service: bref-demo-assets
+service: bref-demo-sqs3
 
 plugins:
     - ./vendor/bref/bref
@@ -12,14 +12,6 @@ provider:
         APP_SECRET: 7ca3adc3815e12d67b4637595b7f9dff
         MESSENGER_TRANSPORT_DSN: https://sqs.us-east-1.amazonaws.com/403367587399/foobar
 
-package:
-    exclude:
-        - 'assets/**'
-        - 'node_modules/**'
-        - 'tests/**'
-        - 'public/build/*.js'
-        - 'public/build/*.css'
-
 functions:
     api:
         handler: public/index.php
@@ -30,3 +22,15 @@ functions:
         events:
             -   http: 'ANY /'
             -   http: 'ANY /{proxy+}'
+
+    worker:
+        handler: bin/consumer.php
+        timeout: 20 # in seconds
+        reservedConcurrency: 5 # max. 5 messages processed in parallel
+        layers:
+            - ${bref:layer.php-74}
+        events:
+            -   sqs:
+                    arn: arn:aws:sqs:us-east-1:403367587399:foobar
+                    # Only 1 item at a time to simplify error handling
+                    batchSize: 1

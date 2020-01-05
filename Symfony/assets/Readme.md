@@ -23,10 +23,15 @@ Add your cloudfront domain name at the bottom of `webpack.config.js` to tell Sym
 
 Now it is time to deploy.
 ```
+# Create a .env.local.php with dev values
+composer dump-env prod
 ./node_modules/.bin/encore production
 aws s3 sync ./public/build s3://cf-simple-s3-origin-cloudfrontfors3-403367587399/bref-demo-assets/build --cache-control max-age=31449600,immutable
 composer install --prefer-dist --optimize-autoloader --no-dev
 bin/console cache:warm --env=prod --no-debug
+
+# Create an empty .env.local.php to force using environement variables
+echo "<?php return ['APP_ENV'=>'prod'];" > .env.local.php
 serverless deploy
 ```
 
