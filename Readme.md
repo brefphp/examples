@@ -6,3 +6,4 @@ Here is a list of all examples:
 
 * [Symfony/assets](Symfony/assets)
 * [Symfony/sqs](Symfony/sqs)
+* [Larave/api](Larave/api)
