@@ -1,8 +1,16 @@
 # Bref example applications
 
-This repository contains some small example application on how to use Bref and Serverless. 
+This repository contains examples of serverless PHP applications built with [Bref](https://bref.sh).
 
-Here is a list of all examples: 
+## Symfony
 
-* [Symfony/assets](Symfony/assets)
-* [Symfony/sqs](Symfony/sqs)
+- [assets](Symfony/assets)
+- [sqs](Symfony/sqs)
+
+## Laravel
+
+- [laravel](Laravel/laravel): unmodified (empty) Laravel project.
+  This directory can be used to _diff_ with the other projects to visualize the differences.
+- [base](Laravel/base): base Laravel install made to work on Lambda.
+  This example is useful to create simple APIs.
+  [Demo URL](https://rzjvk1cad3.execute-api.us-east-1.amazonaws.com/dev).
