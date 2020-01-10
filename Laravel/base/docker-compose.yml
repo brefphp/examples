@@ -1,0 +1,18 @@
+version: "3.5"
+
+services:
+    web:
+        image: bref/fpm-dev-gateway
+        ports:
+            - '8000:80'
+        volumes:
+            - .:/var/task:ro
+        depends_on:
+            - php
+        environment:
+            HANDLER: public/index.php
+            DOCUMENT_ROOT: public
+    php:
+        image: bref/php-73-fpm-dev
+        volumes:
+            - .:/var/task

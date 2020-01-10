@@ -1,0 +1,42 @@
+service: starterpack-laravel-base
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: provided
+  environment:
+    APP_ENV: production
+    APP_DEBUG: true # set to false when moving to production
+    LOG_CHANNEL: stderr # this will send logs to CloudWatch automatically
+    SESSION_DRIVER: cookie # to avoid writing sessions to disk
+    VIEW_COMPILED_PATH: /tmp/storage/framework/views
+
+package:
+  exclude:
+    - node_modules/**
+    - public/storage
+    - storage/**
+    - tests/**
+
+plugins:
+  - ./vendor/bref/bref
+
+functions:
+
+  api:
+    handler: public/index.php
+    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+    layers:
+      - ${bref:layer.php-73-fpm}
+    events:
+      - http: 'ANY /'
+      - http: 'ANY /{proxy+}'
+
+  # Run artisan commands on Lambda by running:
+  #     vendor/bin/bref cli starterpack-laravel-base-artisan -- <command>
+  artisan:
+    handler: artisan
+    timeout: 120 # in seconds
+    layers:
+      - ${bref:layer.php-73} # PHP
+      - ${bref:layer.console} # The "console" layer
