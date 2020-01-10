@@ -1,3 +1,6 @@
+### Translations
+* [Portuguese - Brazil](README-ptBr.md)
+
 ## Deployment
 
 The application can be deployed on AWS by running:

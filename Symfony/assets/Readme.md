@@ -1,5 +1,8 @@
 # Symfony Hello world with assets
 
+### Traduções
+* [Portuguese - Brazil](Readme-ptBr.md)
+
 # Pre-requests
 
 To start this example, you need a S3 Bucket and a CouldFront distribution. There is nothing Bref specific about these

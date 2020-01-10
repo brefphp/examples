@@ -2,6 +2,9 @@
 
 This repository contains examples of serverless PHP applications built with [Bref](https://bref.sh).
 
+### Translations
+* [Portuguese - Brazil](Readme-ptBr.md)
+
 ## Symfony
 
 - [assets](Symfony/assets)

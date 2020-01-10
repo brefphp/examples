@@ -1,5 +1,8 @@
 # Symfony Hello world with SQS
 
+### Traduções
+* [Portuguese - Brazil](Readme-ptBr.md)
+
 # Pre-requests
 
 Before we start we need to setup the QUEUE. Bref works with both FIFO queues and normal queues. Try to create a new normal
