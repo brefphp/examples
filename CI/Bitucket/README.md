@@ -16,8 +16,8 @@
 * Access the menu "Settings -> Pipelines -> Deployments"
     - Select the environment you want to deploy (Staging or Production), in this example I will use Staging
     - Add the variables
-        * AWS_CREDENTIAL_KEY: Access Key ID
-        * AWS_CREDENTIAL_SECRET: Secret Key
+        * AWS_ACCESS_KEY_ID: Access Key ID
+        * AWS_SECRET_ACCESS_KEY: Secret Key
   
 ![Set Environments](images/environment-variables.png)
 
@@ -33,7 +33,7 @@ pipelines:
           image: php:7.3
           caches:
             - composer
-          script:
+          script: #In this step you can add any additional required commands such as caching, etc.
             - apt-get update && apt-get install -y unzip
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - composer install --prefer-dist --optimize-autoloader --no-dev
@@ -51,10 +51,9 @@ pipelines:
           trigger: manual
           caches:
             - node
-          script:
-            - apk add python3
+          script: #In this step you can add any additional required commands such as caching, etc.
             - npm install -g serverless
-            - serverless config credentials --stage prod --provider aws --key ${AWS_DEV_LAMBDA_KEY} --secret ${AWS_DEV_LAMBDA_SECRET}
+            - serverless config credentials --stage dev --provider aws --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
             - serverless deploy --stage dev
 ```
 
