@@ -2,7 +2,7 @@
 
 # Pre-requests
 
-To start this example, you need a S3 Bucket and a CouldFront distribution. There is nothing Bref specific about these
+To start this example, you need a S3 Bucket and a CloudFront distribution. There is nothing Bref specific about these
 so feel free to google your best resource or read this [guide from AWS](https://aws.amazon.com/blogs/networking-and-content-delivery/amazon-s3-amazon-cloudfront-a-match-made-in-the-cloud/).
 The guide even have links to easily set things up.
 
