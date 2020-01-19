@@ -4,6 +4,8 @@ This repository contains examples of serverless PHP applications built with [Bre
 
 ## Symfony
 
+- [symfony](Symfony/symfony): unmodified (empty) Laravel project.
+  This directory can be used to _diff_ with the other projects to visualize the differences.
 - [assets](Symfony/assets)
 - [sqs](Symfony/sqs)
 
