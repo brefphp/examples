@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+    <h1>Bref example of binary requests and responses</h1>
+
+    <a href="{{ path('upload') }}">Try upload a file</a><br><br>
+    After upload you may <a href="{{ path('download') }}">try download</a><br>
+
+
+{% endblock %}
