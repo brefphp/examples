@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bb1bde8890b1137867926c9b8efcada",
+    "content-hash": "36bb888ce07aa7746cd42812cbe4f072",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -154,13 +154,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Nyholm/bref-symfony-messenger.git",
-                "reference": "93130938113f42623424f1935fed434737a6948b"
+                "url": "https://github.com/brefphp/symfony-messenger.git",
+                "reference": "f17dffb2a61e0ce470533afd05faac17bbb95fb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nyholm/bref-symfony-messenger/zipball/93130938113f42623424f1935fed434737a6948b",
-                "reference": "93130938113f42623424f1935fed434737a6948b",
+                "url": "https://api.github.com/repos/brefphp/symfony-messenger/zipball/f17dffb2a61e0ce470533afd05faac17bbb95fb6",
+                "reference": "f17dffb2a61e0ce470533afd05faac17bbb95fb6",
                 "shasum": ""
             },
             "require": {
@@ -184,33 +184,25 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bref\\Messenger\\": "src/"
+                    "Bref\\Symfony\\Messenger\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Bref\\Messenger\\Test\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Symfony Messenger bridge to run with SQS on AWS Lambda with Bref",
             "keywords": [
+                "Messenger",
+                "SNS",
                 "aws",
                 "aws-lambda",
                 "bref",
-                "messenger",
                 "s3",
-                "sns",
                 "sqs",
                 "symfony"
             ],
-            "support": {
-                "source": "https://github.com/Nyholm/bref-symfony-messenger/tree/master",
-                "issues": "https://github.com/Nyholm/bref-symfony-messenger/issues"
-            },
-            "time": "2020-01-19T11:31:33+00:00"
+            "time": "2020-01-19T19:29:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

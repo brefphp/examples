@@ -15,9 +15,9 @@ bref_messenger:
 services:
 
     my_sqs_consumer:
-        class: Bref\Messenger\Service\Sqs\SqsConsumer
+        class: Bref\Symfony\Messenger\Service\Sqs\SqsConsumer
         arguments:
-            - '@Bref\Messenger\Service\BusDriver'
+            - '@Bref\Symfony\Messenger\Service\BusDriver'
             - '@messenger.routable_message_bus'
             - '@Symfony\Component\Messenger\Transport\Serialization\SerializerInterface'
             - 'async' # Same as transport name

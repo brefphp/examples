@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Bref\Messenger\Service\BrefWorker;
+use Bref\Symfony\Messenger\Service\BrefWorker;
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 
