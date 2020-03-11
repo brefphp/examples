@@ -21,8 +21,10 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
 }
 
 // Get user IP:
-$context = json_decode($_SERVER['LAMBDA_CONTEXT'], true);
-$_SERVER['HTTP_X_FORWARDED_FOR'] = $context['identity']['sourceIp'] ?? '';
+if (isset($_SERVER['LAMBDA_CONTEXT'])) {
+    $context = json_decode($_SERVER['LAMBDA_CONTEXT'], true);
+    $_SERVER['HTTP_X_FORWARDED_FOR'] = $context['identity']['sourceIp'] ?? '';
+}
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();
