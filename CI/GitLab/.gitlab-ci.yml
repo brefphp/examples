@@ -8,16 +8,13 @@ cache:
 
 build:
   stage: build
-  image: php:7.4
+  image: composer
   script:
-    - apt-get update
-    - apt-get install unzip
-    - curl -sS https://getcomposer.org/installer | php
-    - php composer.phar install --no-dev --no-progress --prefer-dist
+    - composer install --no-dev --no-progress --prefer-dist
 
 deploy:
   stage: deploy
   image: node:alpine
   script:
     - npm install -g serverless
-    - serverless deploy -v -s staging
+    - serverless deploy -v
