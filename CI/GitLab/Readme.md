@@ -32,3 +32,15 @@ GitLab CI is enabled by default on your project, you only need to add the necess
 The provided [example configuration](.gitlab-ci.yml) will run CI on every commit. First it will install composer dependencies, then it will deploy your project to the dev stage.
 
 Example Repo and CI Pipeline: https://gitlab.com/aknosis/bref-ci-example/-/pipelines/232026285
+
+
+### Laravel
+
+When deploying a Laravel application you must include the additional cache path as seen below. After a composer install Laravel will run package discovery and output some files that must be included at runtime. If you do not add this folder to the cache paths then the files generated will not persist when changing from the build to the deploy job and never exist as part of your deployment and cause some unexpected failures.
+
+```
+cache:
+  paths:
+    - vendor/
+    - bootstrap/cache/
+```
