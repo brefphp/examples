@@ -1,0 +1,20 @@
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - vendor/
+
+build:
+  stage: build
+  image: composer
+  script:
+    - composer install --no-dev --no-progress --prefer-dist
+
+deploy:
+  stage: deploy
+  image: node:alpine
+  script:
+    - npm install -g serverless
+    - serverless deploy -v
