@@ -16,3 +16,5 @@ services:
     image: bref/php-80-fpm-dev
     volumes:
       - .:/var/task
+    environment:
+      APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
