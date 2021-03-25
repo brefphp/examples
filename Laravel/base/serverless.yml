@@ -3,7 +3,7 @@ service: starterpack-laravel-base
 provider:
   name: aws
   region: us-east-1
-  runtime: provided
+  runtime: provided.al2
   environment:
     APP_ENV: production
     APP_DEBUG: true # set to false when moving to production
