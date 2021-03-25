@@ -8,6 +8,9 @@ provider:
     APP_ENV: production
     APP_DEBUG: true # set to false when moving to production
     APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
+  apiGateway:
+    shouldStartNameWithService: true
+  lambdaHashingVersion: 20201221
 
 package:
   exclude:
@@ -26,10 +29,9 @@ functions:
     handler: public/index.php
     timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
     layers:
-      - ${bref:layer.php-74-fpm}
+      - ${bref:layer.php-80-fpm}
     events:
-      - http: 'ANY /'
-      - http: 'ANY /{proxy+}'
+      - httpApi: '*'
 
   # Run artisan commands on Lambda by running:
   #     vendor/bin/bref cli starterpack-laravel-base-dev-artisan -- <command>
@@ -37,5 +39,5 @@ functions:
     handler: artisan
     timeout: 120 # in seconds
     layers:
-      - ${bref:layer.php-74} # PHP
+      - ${bref:layer.php-80} # PHP
       - ${bref:layer.console} # The "console" layer
