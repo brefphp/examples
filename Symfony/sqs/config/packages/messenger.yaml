@@ -9,12 +9,17 @@ framework:
         routing:
             'App\Message\Ping': async
 
+bref_messenger:
+    sqs: true # Register the SQS transport
+
 services:
 
-    Bref\Messenger\Sqs\SqsConsumer:
-        autowire: true
-        autoconfigure: true
+    my_sqs_consumer:
+        class: Bref\Symfony\Messenger\Service\Sqs\SqsConsumer
         arguments:
-            # Inject the transport name used in config/packages/messenger.yaml
-            $transportName: 'async'
-        public: true
+            - '@Bref\Symfony\Messenger\Service\BusDriver'
+            - '@messenger.routable_message_bus'
+            - '@Symfony\Component\Messenger\Transport\Serialization\SerializerInterface'
+            - 'async' # Same as transport name
+        tags:
+            - { name: bref_messenger.consumer }

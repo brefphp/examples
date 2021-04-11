@@ -5,6 +5,9 @@
     "bref/bref": {
         "version": "0.5.12"
     },
+    "bref/symfony-messenger": {
+        "version": "dev-master"
+    },
     "bref/symfony-messenger-sqs": {
         "version": "0.2.0"
     },

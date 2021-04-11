@@ -2,8 +2,8 @@
 
 # Pre-requests
 
-Before we start we need to setup the QUEUE. Bref works with both FIFO queues and normal queues. Try to create a new normal
-SQS queue, name it "foobar" and  click "quick create". 
+Before we start we need to setup the QUEUE. Bref works with both FIFO queues and standard queues. Try to create a new "standard
+queue", name it "foobar" and  click "quick create". 
 
 Example queue ARN: **arn:aws:sqs:us-east-1:403367587399:foobar**
 Example queue URL: **https://sqs.us-east-1.amazonaws.com/403367587399/foobar**
@@ -36,7 +36,7 @@ The last thing we need to do is to allow write access to the queue.
 
 1. Go to IAM in the AWS console
 2. Click "Roles" in the left sidebar
-3. Find the roles for this Lambda application and click on it. Probably named something like "bref-demo-sqs"
+3. Find the roles for this Lambda application and click on it. Probably named something like "bref-demo-sqs-dev-...-LambdaRole"
 4. Now click "Attach policy" and find "SQSFullAccess" in the list. After you added that policy you are good to go. 
 
 You can obviously be more restrictive with what policy to add. 
