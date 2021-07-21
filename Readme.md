@@ -13,9 +13,10 @@ This repository contains examples of serverless PHP applications built with [Bre
 
 - [laravel](Laravel/laravel): unmodified (empty) Laravel project.
   This directory can be used to _diff_ with the other projects to visualize the differences.
-- [base](Laravel/base): base Laravel install made to work on Lambda.
-  This example is useful to create simple APIs.
+- [base](Laravel/base): Laravel made to work on Lambda.
+  This example is useful to create APIs.
   [Demo URL](https://rzjvk1cad3.execute-api.us-east-1.amazonaws.com/dev).
+- [queues](Laravel/queues): Laravel Queues on Lambda.
 
 ## CI/CD
 
