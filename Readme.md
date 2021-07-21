@@ -21,3 +21,5 @@ This repository contains examples of serverless PHP applications built with [Bre
 ## CI/CD
 
 - [GitHub Actions](CI/GitHubAction)
+- [GitLab CI](CI/GitLab)
+- [Bitbucket](CI/Bitbucket)
