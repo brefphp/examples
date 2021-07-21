@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55e6e7d1287e7ff180f980eba4f812db",
+    "content-hash": "ca5e4b10d80ab26ac8868adc5357610e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -354,16 +354,16 @@
         },
         {
             "name": "bref/laravel-bridge",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brefphp/laravel-bridge.git",
-                "reference": "4abfb131e43a86513687b1b114dce01a929b208f"
+                "reference": "5c85630bf8b8876f261ec0916d1d36081bd11eea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brefphp/laravel-bridge/zipball/4abfb131e43a86513687b1b114dce01a929b208f",
-                "reference": "4abfb131e43a86513687b1b114dce01a929b208f",
+                "url": "https://api.github.com/repos/brefphp/laravel-bridge/zipball/5c85630bf8b8876f261ec0916d1d36081bd11eea",
+                "reference": "5c85630bf8b8876f261ec0916d1d36081bd11eea",
                 "shasum": ""
             },
             "require": {
@@ -409,7 +409,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brefphp/laravel-bridge/issues",
-                "source": "https://github.com/brefphp/laravel-bridge/tree/1.0.0"
+                "source": "https://github.com/brefphp/laravel-bridge/tree/1.1.0"
             },
             "funding": [
                 {
@@ -417,7 +417,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-26T18:38:43+00:00"
+            "time": "2021-07-21T13:34:02+00:00"
         },
         {
             "name": "brick/math",
