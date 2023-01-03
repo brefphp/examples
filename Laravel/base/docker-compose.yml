@@ -13,7 +13,7 @@ services:
       HANDLER: public/index.php
       DOCUMENT_ROOT: public
   php:
-    image: bref/php-80-fpm-dev
+    image: bref/php-81-fpm-dev
     volumes:
       - .:/var/task
     environment:
