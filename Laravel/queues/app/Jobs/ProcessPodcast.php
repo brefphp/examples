@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,13 +13,8 @@ use Illuminate\Support\Facades\Log;
 class ProcessPodcast implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    /** @var int */
-    private $podcastId;
-
-    public function __construct(int $podcastId)
+    public function __construct(private int $podcastId)
     {
-        $this->podcastId = $podcastId;
     }
 
     /**
