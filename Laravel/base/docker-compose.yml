@@ -2,19 +2,11 @@ version: '3.5'
 
 services:
   web:
-    image: bref/fpm-dev-gateway
-    ports:
-      - '8000:80'
+    image: bref/php-81-fpm-dev:2
+    ports: [ '8000:8000' ]
     volumes:
       - .:/var/task:ro
-    depends_on:
-      - php
     environment:
       HANDLER: public/index.php
       DOCUMENT_ROOT: public
-  php:
-    image: bref/php-81-fpm-dev
-    volumes:
-      - .:/var/task
-    environment:
       APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='

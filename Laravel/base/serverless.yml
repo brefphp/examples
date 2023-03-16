@@ -1,44 +1,45 @@
-service: starterpack-laravel-base
+service: bref-example-laravel
 
 provider:
-  name: aws
-  region: us-east-1
-  runtime: provided.al2
-  environment:
-    APP_ENV: production
-    APP_DEBUG: true # set to false when moving to production
-    APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
-  # Enable new serverless.yml features to avoid deprecation warnings
-  apiGateway:
-    shouldStartNameWithService: true
-  lambdaHashingVersion: 20201221
+    name: aws
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: us-east-1
+    environment:
+        APP_ENV: production
+        APP_DEBUG: true # set to false when moving to production
+        APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
 
 package:
-  exclude:
-    - node_modules/**
-    - public/storage
-    - storage/**
-    - tests/**
-    - .env
-
-plugins:
-  - ./vendor/bref/bref
+    # Directories to exclude from deployment
+    patterns:
+        - '!node_modules/**'
+        - '!public/storage'
+        - '!resources/assets/**'
+        - '!storage/**'
+        - '!tests/**'
+        - '!.env'
 
 functions:
 
-  api:
-    handler: public/index.php
-    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-    layers:
-      - ${bref:layer.php-81-fpm}
-    events:
-      - httpApi: '*'
+    # This function runs the Laravel website/API
+    web:
+        handler: public/index.php
+        runtime: php-81-fpm
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        events:
+            - httpApi: '*'
 
-  # Run artisan commands on Lambda by running:
-  #     vendor/bin/bref cli starterpack-laravel-base-dev-artisan -- <command>
-  artisan:
-    handler: artisan
-    timeout: 120 # in seconds
-    layers:
-      - ${bref:layer.php-81} # PHP
-      - ${bref:layer.console} # The "console" layer
+    # This function lets us run artisan commands in Lambda
+    artisan:
+        handler: artisan
+        runtime: php-81-console
+        timeout: 720 # in seconds
+        events:
+            # We also schedule this function to run the scheduler every 10 minutes
+            - schedule:
+                  rate: rate(10 minutes)
+                  input: '"schedule:run"'
+
+plugins:
+    # We need to include the Bref plugin
+    - ./vendor/bref/bref
