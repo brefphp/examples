@@ -1,18 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Controller;
 
 use App\Message\Ping;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class DefaultController extends AbstractController
 {
-    public function index()
+    public function index(MessageBusInterface $bus): Response
     {
-        $this->dispatchMessage(new Ping('foobar'));
+        $bus->dispatch(new Ping('foobar'));
 
         return new Response('Sent ping... Check the logs.');
     }
