@@ -1,55 +1,57 @@
-service: starterpack-laravel-queues
+service: bref-example-laravel-queues
 
 provider:
-  name: aws
-  region: us-east-2
-  runtime: provided.al2
-  environment:
-    APP_ENV: production
-    APP_DEBUG: true # set to false when moving to production
-    APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
-    SQS_QUEUE: ${construct:jobs.queueUrl}
-    QUEUE_CONNECTION: sqs
-#    AWS_DEFAULT_REGION=us-east-1
-  # Enable new serverless.yml features to avoid deprecation warnings
-  apiGateway:
-    shouldStartNameWithService: true
-  lambdaHashingVersion: 20201221
+    name: aws
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: us-east-1
+    # Environment variables
+    environment:
+        APP_ENV: production # Or use ${sls:stage} if you want the environment to match the stage
+        APP_KEY: 'base64:/EStlF5sExBpWdQ3eB/h+F2zzKGDc5bvDzwe0KD8ZPg='
+        QUEUE_CONNECTION: sqs
+        SQS_QUEUE: ${construct:jobs.queueUrl}
 
 package:
-  patterns:
-    - '!node_modules/**'
-    - '!public/storage'
-    - '!storage/**'
-    - '!tests/**'
-    - '!.env'
+    # Files and directories to exclude from deployment
+    patterns:
+        - '!node_modules/**'
+        - '!public/storage'
+        - '!resources/assets/**'
+        - '!storage/**'
+        - '!tests/**'
+        - '!.env'
+
+functions:
+
+    # This function runs the Laravel website/API
+    web:
+        handler: public/index.php
+        runtime: php-81-fpm
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        events:
+            - httpApi: '*'
+
+    # This function lets us run artisan commands in Lambda
+    artisan:
+        handler: artisan
+        runtime: php-81-console
+        timeout: 720 # in seconds
+        # Uncomment to also run the scheduler every minute
+        #events:
+        #    - schedule:
+        #          rate: rate(1 minute)
+        #          input: '"schedule:run"'
+
+
+constructs:
+    jobs:
+        type: queue
+        # This function runs Laravel Queues
+        worker:
+            handler: Bref\LaravelBridge\Queue\QueueHandler
+            runtime: php-81
+            timeout: 60 # seconds
 
 plugins:
   - ./vendor/bref/bref
   - serverless-lift
-functions:
-
-  api:
-    handler: public/index.php
-    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-    layers:
-      - ${bref:layer.php-81-fpm}
-    events:
-      - httpApi: '*'
-
-  # Run artisan commands on Lambda by running:
-  #     vendor/bin/bref cli starterpack-laravel-base-dev-artisan -- <command>
-  artisan:
-    handler: artisan
-    timeout: 120 # in seconds
-    layers:
-      - ${bref:layer.php-81} # PHP
-      - ${bref:layer.console} # The "console" layer
-
-constructs:
-  jobs:
-    type: queue
-    worker:
-      handler: worker.php
-      layers:
-        - ${bref:layer.php-81}

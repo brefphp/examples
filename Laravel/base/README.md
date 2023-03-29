@@ -1,14 +1,22 @@
+Read the [Bref Laravel documentation](https://bref.sh/docs/frameworks/laravel.html) and make sure you have [everything to get started](https://bref.sh/docs/installation.html) first.
+
+## Setup
+
+```bash
+composer install --optimize-autoloader --no-dev
+```
+
 ## Deployment
 
 The application can be deployed on AWS by running:
 
 ```bash
-make deploy
+php artisan config:clear
+
+serverless deploy
 ```
 
-The `make deploy` command is a script defined in the `Makefile` of the project.
-
-Read more in [the official Bref documentation](https://bref.sh/docs/deploy.html).
+Read more in [the official Bref documentation](https://bref.sh/docs/frameworks/laravel.html).
 
 ## Local development
 
