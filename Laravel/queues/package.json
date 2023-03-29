@@ -7,10 +7,7 @@
     "devDependencies": {
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "serverless": "^2.52.0",
-        "serverless-lift": "^1.3.0",
-	"vite": "^4.0.0"
+        "serverless-lift": "^1.25.1",
+        "vite": "^4.0.0"
     }
 }

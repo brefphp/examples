@@ -13,16 +13,15 @@ use Illuminate\Support\Facades\Log;
 class ProcessPodcast implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     public function __construct(private int $podcastId)
     {
     }
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Log::info('Processing podcast ' . $this->podcastId);
 

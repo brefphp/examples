@@ -1,11 +1,12 @@
 ## Deployment
 
-The application can be deployed on AWS by running:
+The application can be deployed to AWS by running:
 
 ```bash
-make deploy
+composer install
+npm install
+php artisan config:clear
+serverless deploy
 ```
-
-The `make deploy` command is a script defined in the `Makefile` of the project.
 
 Read more in [the Laravel Bridge documentation](https://github.com/brefphp/laravel-bridge#laravel-queues-with-sqs).
