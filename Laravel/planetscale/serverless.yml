@@ -1,0 +1,44 @@
+service: bref-example-laravel-planetscale
+
+provider:
+    name: aws
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: us-east-1
+    environment:
+        APP_ENV: production
+        # Connect via SSL (https://planetscale.com/docs/concepts/secure-connections)
+        MYSQL_ATTR_SSL_CA: /opt/bref/ssl/cert.pem
+
+package:
+    # Directories to exclude from deployment
+    patterns:
+        - '!node_modules/**'
+        - '!public/storage'
+        - '!resources/assets/**'
+        - '!storage/**'
+        - '!tests/**'
+
+functions:
+
+    # This function runs the Laravel website/API
+    web:
+        handler: public/index.php
+        runtime: php-81-fpm
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        events:
+            - httpApi: '*'
+
+    # This function lets us run artisan commands in Lambda
+    artisan:
+        handler: artisan
+        runtime: php-81-console
+        timeout: 720 # in seconds
+        events:
+            # We also schedule this function to run the scheduler every 10 minutes
+            - schedule:
+                  rate: rate(10 minutes)
+                  input: '"schedule:run"'
+
+plugins:
+    # We need to include the Bref plugin
+    - ./vendor/bref/bref
