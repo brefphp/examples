@@ -15,6 +15,7 @@ This repository contains examples of serverless PHP applications built with [Bre
   This directory can be used to _diff_ with the other projects to visualize the differences.
 - [base](Laravel/base): Simple Laravel app running on Lambda.
 - [queues](Laravel/queues): Laravel Queues on Lambda.
+- [planetscale](Laravel/planetscale): Laravel with [PlanetScale](https://planetscale.com/) as the database.
 
 ## CI/CD
 
