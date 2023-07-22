@@ -1,20 +1,17 @@
 framework:
     messenger:
+        # reset services after consuming messages
+        reset_on_message: true
+
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
         # failure_transport: failed
 
         transports:
-            async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # failed: 'doctrine://default?queue_name=failed'
+            sync: 'sync://'
 
         routing:
-            'App\Message\Ping': async
-
-services:
-
-    Bref\Messenger\Sqs\SqsConsumer:
-        autowire: true
-        autoconfigure: true
-        arguments:
-            # Inject the transport name used in config/packages/messenger.yaml
-            $transportName: 'async'
-        public: true
+            # Route your messages to the transports
+            'App\Message\Ping': sync

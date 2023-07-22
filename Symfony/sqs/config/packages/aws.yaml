@@ -1,9 +1,0 @@
-services:
-  Aws\Sqs\SqsClient:
-    factory: [Aws\Sqs\SqsClient, factory]
-    arguments:
-      - region: '%env(AWS_REGION)%'
-        version: '2012-11-05'
-
-# The AWS client will automatically read from AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-# environment variables that are always defined on Lambda.

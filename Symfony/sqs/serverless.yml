@@ -6,7 +6,6 @@ plugins:
 provider:
     name: aws
     region: us-east-1
-    runtime: provided
     environment:
         APP_ENV: prod
         APP_SECRET: 7ca3adc3815e12d67b4637595b7f9dff
@@ -15,20 +14,16 @@ provider:
 functions:
     api:
         handler: public/index.php
-        description: ''
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-        layers:
-            - ${bref:layer.php-74-fpm}
+        runtime: php-82-fpm
         events:
-            -   http: 'ANY /'
-            -   http: 'ANY /{proxy+}'
+            - httpApi: '*'
 
     worker:
         handler: bin/consumer.php
         timeout: 20 # in seconds
         reservedConcurrency: 5 # max. 5 messages processed in parallel
-        layers:
-            - ${bref:layer.php-74}
+        runtime: php-82
         events:
             -   sqs:
                     arn: arn:aws:sqs:us-east-1:403367587399:foobar

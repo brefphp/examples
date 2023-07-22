@@ -1,13 +1,14 @@
 <?php declare(strict_types=1);
 
-use Bref\Messenger\Sqs\SqsConsumer;
+use App\Kernel;
+use Bref\Symfony\Messenger\Service\Sqs\SqsConsumer;
+use Symfony\Component\Dotenv\Dotenv;
 
-require dirname(__DIR__) . '/config/bootstrap.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
-lambda(function ($event) {
-    $kernel = new \App\Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
-    $kernel->boot();
+(new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 
-    $sqsConsumer = $kernel->getContainer()->get(SqsConsumer::class);
-    $sqsConsumer->consumeLambdaEvent($event);
-});
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool)$_SERVER['APP_DEBUG']);
+$kernel->boot();
+
+return $kernel->getContainer()->get(SqsConsumer::class);
