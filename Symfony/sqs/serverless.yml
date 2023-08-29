@@ -9,6 +9,7 @@ provider:
     runtime: provided
     environment:
         APP_ENV: prod
+        TRUSTED_PROXIES: '127.0.0.1'
         APP_SECRET: 7ca3adc3815e12d67b4637595b7f9dff
         MESSENGER_TRANSPORT_DSN: https://sqs.us-east-1.amazonaws.com/403367587399/foobar
 

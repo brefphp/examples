@@ -20,12 +20,14 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
     Request::setTrustedHosts([$trustedHosts]);
 }
 
+// Get user IP:
+if (isset($_SERVER['LAMBDA_CONTEXT'])) {
+    $context = json_decode($_SERVER['LAMBDA_CONTEXT'], true);
+    $_SERVER['HTTP_X_FORWARDED_FOR'] = $context['identity']['sourceIp'] ?? '';
+}
+
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();
-
-// Trust all headers for everyone. This is extremely dangerous. But it fine if the code runs on Lambda thanks to AWs security.
-Request::setTrustedProxies(['127.0.0.1', $request->server->get('REMOTE_ADDR')], Request::HEADER_X_FORWARDED_ALL);
-
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);

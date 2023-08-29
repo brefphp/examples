@@ -13,6 +13,7 @@ provider:
 
     environment:
         APP_ENV: prod
+        TRUSTED_PROXIES: '127.0.0.1'
         APP_SECRET: 7ca3adc3815e12d67b4637595b7f9dff
         MY_BUCKET: 'bref-example'
         BREF_BINARY_RESPONSES: 1
