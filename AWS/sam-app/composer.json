@@ -1,0 +1,23 @@
+{
+    "name": "bref/sam-app",
+    "description": "Example Bref app built with AWS SAM.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bref\\SamApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jason Craft",
+            "email": "jason@nationsphere.net"
+        }
+    ],
+    "require": {
+        "bref/bref": "^2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.4"
+    }
+}
