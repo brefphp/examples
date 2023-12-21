@@ -1,0 +1,44 @@
+service: symfony
+
+provider:
+    name: aws
+    region: us-east-1
+    stage: dev
+    runtime: provided.al2
+    environment:
+        APP_ENV: dev
+        APP_SECRET: a7dcdff70d141abae8e36866c153cf17
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    web:
+        handler: public/index.php
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        layers:
+            - ${bref:layer.php-81-fpm}
+        events:
+            - httpApi: '*'
+
+    # This function let us run console commands in Lambda
+    console:
+        handler: bin/console
+        timeout: 120 # in seconds
+        layers:
+            - ${bref:layer.php-81} # PHP
+            - ${bref:layer.console} # The "console" layer
+
+package:
+    patterns:
+        # Excluded files and folders for deployment
+        - '!assets/**'
+        - '!node_modules/**'
+        - '!public/build/**'
+        - '!tests/**'
+        - '!var/**'
+        # If you want to include files and folders that are part of excluded folders,
+        # add them at the end
+        - 'var/cache/prod/**'
+        - 'public/build/entrypoints.json'
+        - 'public/build/manifest.json'
