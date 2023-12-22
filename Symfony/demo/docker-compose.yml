@@ -3,7 +3,7 @@ version: "3.5"
 services:
     app:
         image: bref/php-81-fpm-dev:2
-        ports: [ '8000:8000' ]
+        ports: [ '8002:8000' ]
         volumes:
             - .:/var/task
         environment:

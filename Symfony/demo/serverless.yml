@@ -3,10 +3,8 @@ service: symfony
 provider:
     name: aws
     region: us-east-1
-    stage: dev
-    runtime: provided.al2
     environment:
-        APP_ENV: dev
+        APP_ENV: prod
         APP_SECRET: a7dcdff70d141abae8e36866c153cf17
 
 plugins:
@@ -16,8 +14,7 @@ functions:
     web:
         handler: public/index.php
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-        layers:
-            - ${bref:layer.php-81-fpm}
+        runtime: php-82-fpm
         events:
             - httpApi: '*'
 
@@ -25,9 +22,7 @@ functions:
     console:
         handler: bin/console
         timeout: 120 # in seconds
-        layers:
-            - ${bref:layer.php-81} # PHP
-            - ${bref:layer.console} # The "console" layer
+        runtime: php-82-console
 
 package:
     patterns:
