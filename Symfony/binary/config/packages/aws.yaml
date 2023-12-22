@@ -1,9 +1,0 @@
-services:
-  Aws\S3\S3Client:
-    factory: [Aws\S3\S3Client, factory]
-    arguments:
-      - region: '%env(AWS_REGION)%'
-        version: '2006-03-01'
-
-# The AWS client will automatically read from AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-# environment variables that are always defined on Lambda.
