@@ -4,30 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b52d303c3743c08e8dac42ab67d26df",
+    "content-hash": "36bb888ce07aa7746cd42812cbe4f072",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.130.3",
+            "version": "3.133.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "916356edb5c30fa564d02de94bde51a9c0bb4469"
+                "reference": "49ee9aad9b7918feb5a0eab79e0f7c08a9696fe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/916356edb5c30fa564d02de94bde51a9c0bb4469",
-                "reference": "916356edb5c30fa564d02de94bde51a9c0bb4469",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/49ee9aad9b7918feb5a0eab79e0f7c08a9696fe0",
+                "reference": "49ee9aad9b7918feb5a0eab79e0f7c08a9696fe0",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-simplexml": "*",
-                "guzzlehttp/guzzle": "^5.3.3|^6.2.1",
-                "guzzlehttp/promises": "~1.0",
+                "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
+                "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.4.1",
-                "mtdowling/jmespath.php": "~2.2",
+                "mtdowling/jmespath.php": "^2.5",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -88,20 +88,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-01-02T19:13:50+00:00"
+            "time": "2020-01-17T19:15:02+00:00"
         },
         {
             "name": "bref/bref",
-            "version": "0.5.12",
+            "version": "0.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brefphp/bref.git",
-                "reference": "be2d60d4989d82f5cbe502b6c39e6ba00a626056"
+                "reference": "630ce0ff91117134546c5c5f22c59b5ed3aed556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brefphp/bref/zipball/be2d60d4989d82f5cbe502b6c39e6ba00a626056",
-                "reference": "be2d60d4989d82f5cbe502b6c39e6ba00a626056",
+                "url": "https://api.github.com/repos/brefphp/bref/zipball/630ce0ff91117134546c5c5f22c59b5ed3aed556",
+                "reference": "630ce0ff91117134546c5c5f22c59b5ed3aed556",
                 "shasum": ""
             },
             "require": {
@@ -147,42 +147,44 @@
                 "lambda",
                 "serverless"
             ],
-            "time": "2019-12-18T13:21:05+00:00"
+            "time": "2020-01-13T06:36:17+00:00"
         },
         {
-            "name": "bref/symfony-messenger-sqs",
-            "version": "0.2.0",
+            "name": "bref/symfony-messenger",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/brefphp/symfony-messenger-sqs.git",
-                "reference": "85918eff602e1fe0de35714d661469e283033b84"
+                "url": "https://github.com/brefphp/symfony-messenger.git",
+                "reference": "f17dffb2a61e0ce470533afd05faac17bbb95fb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brefphp/symfony-messenger-sqs/zipball/85918eff602e1fe0de35714d661469e283033b84",
-                "reference": "85918eff602e1fe0de35714d661469e283033b84",
+                "url": "https://api.github.com/repos/brefphp/symfony-messenger/zipball/f17dffb2a61e0ce470533afd05faac17bbb95fb6",
+                "reference": "f17dffb2a61e0ce470533afd05faac17bbb95fb6",
                 "shasum": ""
             },
             "require": {
                 "aws/aws-sdk-php": "^3.127",
                 "ext-json": "*",
                 "php": "^7.3",
-                "symfony/config": "^4.3|^5.0",
-                "symfony/dependency-injection": "^4.3|^5.0",
-                "symfony/http-kernel": "^4.3|^5.0",
-                "symfony/messenger": "^4.3|^5.0",
-                "symfony/yaml": "^4.3|^5.0"
+                "symfony/config": "^4.3 || ^5.0",
+                "symfony/dependency-injection": "^4.3 || ^5.0",
+                "symfony/http-kernel": "^4.3 || ^5.0",
+                "symfony/messenger": "^4.3 || ^5.0",
+                "symfony/yaml": "^4.3 || ^5.0"
             },
             "require-dev": {
+                "matthiasnoback/symfony-dependency-injection-test": "^4.1",
                 "mnapoli/hard-mode": "^0.2.0",
+                "nyholm/symfony-bundle-test": "^1.6",
                 "phpstan/phpstan": "^0.12.0",
-                "phpunit/phpunit": "^8.0",
-                "symfony/framework-bundle": "^4.3|^5.0"
+                "phpunit/phpunit": "^8.5",
+                "symfony/framework-bundle": "^4.3 || ^5.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bref\\Messenger\\": "src/"
+                    "Bref\\Symfony\\Messenger\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -192,13 +194,15 @@
             "description": "Symfony Messenger bridge to run with SQS on AWS Lambda with Bref",
             "keywords": [
                 "Messenger",
+                "SNS",
                 "aws",
                 "aws-lambda",
                 "bref",
+                "s3",
                 "sqs",
                 "symfony"
             ],
-            "time": "2019-12-05T11:06:37+00:00"
+            "time": "2020-01-19T19:29:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2653,7 +2657,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "bref/symfony-messenger": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
