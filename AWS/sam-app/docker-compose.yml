@@ -2,10 +2,9 @@ version: "3.8"
 services:
   hello-world:
     command: handlers/hello-world.php
-    image: bref/php-82
-    environment:
-      - _HANDLER=/var/task/handlers/hello-world.php
+    image: bref/php-83
+    env_file: .env
     ports:
-      - "9001:8080"
+      - "3002:8080"
     volumes:
       - .:/var/task

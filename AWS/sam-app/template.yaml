@@ -1,7 +1,7 @@
 #
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  sam-app
+  Example Bref function built using AWS SAM. 
 
 Transform:
 - AWS::Serverless-2016-10-31
@@ -19,6 +19,6 @@ Resources:
       CodeUri: .
       Description: A Lambda function that returns a static string.
       Layers:
-        - arn:aws:lambda:us-west-2:534081306603:layer:php-82:50
+        - arn:aws:lambda:us-west-2:534081306603:layer:php-83:13
       Policies:
         - AWSLambdaBasicExecutionRole
