@@ -17,6 +17,7 @@ The following composer commands are convenience wrappers for the AWS SAM Cli:
   * `invoke:lambda:helloWorld`: After the above start command is called, this will invoke the lambda running in the docker container. 
 * `composer start:docker:helloWorld`: Runs the docker containers defined in the [docker-compose](docker-compose.yml) file.
   * `composer invoke:docker:helloWorld`: After the above start command is called, this will invoke the lambda running in the docker container.
+* `composer deploy`: Builds and deploys the application. This will use the default AWS credentials that are configured. 
 
 ## Build Process
 The template defines a [custom runtime](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html) for each lambda function. By default `make` is used to build them with a target of the form `build-[function name]`. See the [Makefile](Makefile) for a generic approach. Any other code, config files, or additional resources can be copied over in the build target. 

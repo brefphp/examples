@@ -26,6 +26,10 @@
         ],
         "invoke:lambda:helloWorld": "aws lambda invoke --function-name \"helloWorldFunction\" --endpoint-url \"http://127.0.0.1:3001\" --cli-binary-format raw-in-base64-out --payload file://tests/events/hello-world.json --no-verify-ssl --output json response.json && cat response.json",
         "start:docker:helloWorld": "docker compose up hello-world",
-        "invoke:docker:helloWorld": "aws lambda invoke --function-name \"function\" --endpoint-url \"http://127.0.0.1:3002\" --cli-binary-format raw-in-base64-out --payload file://tests/events/hello-world.json --no-verify-ssl --output json response.json && cat response.json"
+        "invoke:docker:helloWorld": "aws lambda invoke --function-name \"function\" --endpoint-url \"http://127.0.0.1:3002\" --cli-binary-format raw-in-base64-out --payload file://tests/events/hello-world.json --no-verify-ssl --output json response.json && cat response.json",
+        "deploy": [
+            "@build",
+            "sam deploy"
+        ]
     }
 }
